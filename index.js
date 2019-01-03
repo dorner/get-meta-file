@@ -27,17 +27,8 @@ module.exports = function (options) {
     }
 
     if (path.dirname(metaLocation) !== process.cwd()) {
-
-      const question = `We found a meta repo in ${metaLocation}. Would you like to...\n\n\trun the command from ${metaLocation} (y or enter)\n\tcontinue in the current directory (c)\n\tcancel and exit (x) ?\n\n\t(Y/c/x)`;
-      const message = `${warning}\n${question}`;
-
-      const yes = prompt(message).toLowerCase();
-
-      if (yes === 'x') return process.exit(0);
-      if ( ! yes || yes === 'y') {
-        process.chdir(path.dirname(metaLocation));
-      }
-
+      console.log(chalk.red(`Running meta from ${metaLocation}`));
+      process.chdir(path.dirname(metaLocation));
     }
 
   }
